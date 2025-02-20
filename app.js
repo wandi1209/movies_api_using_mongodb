@@ -17,6 +17,8 @@ mongoose
 
 const app = express();
 
+require("./models/movies");
+
 // Routes
 app.post("/api/movies", addMovie);
 
