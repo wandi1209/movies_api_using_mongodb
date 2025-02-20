@@ -17,6 +17,9 @@ mongoose
 
 const app = express();
 
+app.use(express.json());
+
+// Models
 require("./models/movies");
 
 // Routes
