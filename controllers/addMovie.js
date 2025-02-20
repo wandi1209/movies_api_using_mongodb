@@ -2,31 +2,15 @@ const addMovie = (req, res) => {
   const { movie_name, info, rating } = req.body;
 
   //Validations...
-  if (!movie_name) {
+  try {
+    if (!movie_name) throw "Movie name is required!";
+    if (!info) throw "Info is required!";
+    if (!rating) throw "Rating is required!";
+    if (rating < 1 || rating > 10) throw "Rating must be between 1-10";
+  } catch (e) {
     res.status(400).json({
       status: "failed",
-      message: "Movie name must be provided!",
-    });
-    return;
-  }
-  if (!info) {
-    res.status(400).json({
-      status: "failed",
-      message: "Info must be provided!",
-    });
-    return;
-  }
-  if (!rating) {
-    res.status(400).json({
-      status: "failed",
-      message: "Rating must be provided!",
-    });
-    return;
-  }
-  if (rating < 1 || rating > 10) {
-    res.status(400).json({
-      status: "failed",
-      message: "Rating must be between 1-10",
+      message: e,
     });
     return;
   }
