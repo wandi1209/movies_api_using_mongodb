@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const moviesSchema = new mongoose.Schema({
   movie_name: {
     type: String,
-    reuired: [true, "Movie name is required"],
+    required: [true, "Movie name is required"],
   },
   info: {
     type: String,

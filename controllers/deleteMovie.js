@@ -9,27 +9,11 @@ const deleteMovie = async (req, res) => {
     _id: movie_id,
   });
 
-  try {
-    if (!getMovie) throw "Movie id doesn't exists";
-  } catch (error) {
-    res.status(400).json({
-      status: "failed",
-      message: error,
-    });
-    return;
-  }
+  if (!getMovie) throw "Movie id doesn't exists";
 
-  try {
-    await movieModel.deleteOne({
-      _id: movie_id,
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "failed",
-      message: error.message,
-    });
-    return;
-  }
+  await movieModel.deleteOne({
+    _id: movie_id,
+  });
 
   res.status(200).json({
     status: "success",

@@ -1,4 +1,6 @@
+require("express-async-errors");
 const express = require("express");
+
 require("dotenv").config();
 
 const addMovie = require("./controllers/addMovie");
@@ -6,7 +8,8 @@ const getAllMovies = require("./controllers/getAllMovies");
 const getSingleMovie = require("./controllers/getSingleMovie");
 const editMovie = require("./controllers/editMovie");
 const deleteMovie = require("./controllers/deleteMovie");
-const movieRecommendation = require("./controllers/movieRecommendation");
+
+const errorHandler = require("./handlers/errorHandler");
 
 const mongoose = require("mongoose");
 
@@ -34,8 +37,7 @@ app.get("/api/movies/:movie_id", getSingleMovie);
 app.patch("/api/movies", editMovie);
 app.delete("/api/movies/:movie_id", deleteMovie);
 
-// Open AI Suggestios
-app.get("/api/movies/openai/getRecommendations", movieRecommendation);
+app.use(errorHandler);
 
 app.listen(8000, () => {
   console.log("Server started!");
