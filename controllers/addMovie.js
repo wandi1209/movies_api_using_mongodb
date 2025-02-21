@@ -7,7 +7,6 @@ const addMovie = async (req, res) => {
 
   //Validations...
   try {
-    if (!movie_name) throw "Movie name is required!";
     if (!info) throw "Info is required!";
     if (!rating) throw "Rating is required!";
     if (rating < 1 || rating > 10) throw "Rating must be between 1-10";
